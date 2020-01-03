@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 
 public class Company {
+    
      public static boolean hire(){
+
           return true;
      }
      public static boolean hireAll(){
@@ -12,9 +14,10 @@ public class Company {
          return true;
      }
 
-//     public int getIncome(){
-//         return income;
-//     }
+     public static double getIncome(){
+
+         return income;
+     }
 
     public ArrayList<Employee> getTopSalryStaff(int count){
         return null;

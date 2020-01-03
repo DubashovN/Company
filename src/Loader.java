@@ -4,6 +4,7 @@ public class Loader {
 
         Manager manager = new Manager();
 
-        System.out.println(manager.getMonthSalary());
+        manager.salesByManager();
+        System.out.println(manager.getSales());
     }
 }

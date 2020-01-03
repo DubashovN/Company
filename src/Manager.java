@@ -1,31 +1,32 @@
 public class Manager implements Employee {
 
-    private static final double PROCENTS = 0.05;
-    private double sales = 0;
-    private double salary = 60000.0;
+    private static final double SALARY = 60000.0;
+    private static final double BONUS = 0.05;
+    private double sales;
 
-    public void salesByManager (Company company){
-        double price = 60000.0 + Math.random()*100000.0;
-        sales += price;
+    public void salesByManager(){
+        int randomSales = (int) (Math.random() * 100000);
+        sales+=randomSales;
     }
 
     @Override
-    public void calculateSalary() {
-        salary = getSales() * PROCENTS + salary;
-    }
-
-    public double getSalary() {
-        return salary;
+    public double getMonthSalary() {
+        return sales * BONUS + SALARY ;
     }
 
     public double getSales() {
         return sales;
     }
 
-    @Override
-    public double getMonthSalary() {
-        return 0;
+    public void setSales(double sales) {
+        this.sales = sales;
     }
 
+    public int getCount() {
+        return count;
+    }
 
+    public void setCount(int count) {
+        this.count = count++;
+    }
 }

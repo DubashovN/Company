@@ -5,8 +5,4 @@ public class TopManager implements Employee {
         return 0;
     }
 
-    @Override
-    public void calculateSalary() {
-
-    }
 }
