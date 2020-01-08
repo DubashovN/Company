@@ -7,11 +7,13 @@ public class Manager implements Employee {
     public void salesByManager(){
         int randomSales = (int) (Math.random() * 100000);
         sales+=randomSales;
+        System.out.println("Продажи менеджера: " + sales);
     }
 
     @Override
     public double getMonthSalary() {
-        return sales * BONUS + SALARY ;
+        return this.sales * BONUS + SALARY ;
+
     }
 
     public double getSales() {
@@ -22,11 +24,4 @@ public class Manager implements Employee {
         this.sales = sales;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count++;
-    }
 }

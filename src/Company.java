@@ -1,30 +1,62 @@
 import java.util.ArrayList;
 
 public class Company {
-    
-     public static boolean hire(){
 
-          return true;
+    int managerCount = 0;
+    int topManagerCount = 0;
+    private int companyIncome = 0;
+    private ArrayList<Employee>employees = new ArrayList<>();
+
+     public void hire(Employee employee){
+         if ()
+          employees.add(employee);
+
      }
-     public static boolean hireAll(){
-         return true;
+//     public void hireAll(){
+//            employees.add(hireManager());
+//     }
+     public void hireManager(Manager manager){
+         employees.add(manager);
+         count++;
+         System.out.println("Родился менеджер! " + count);
+     }
+     public void hireTopManager(TopManager topManager){
+         employees.add(topManager);
+         count++;
+         System.out.println("Родился топменеджер! " + count);
+
      }
 
-     public static boolean fire(){
-         return true;
+     public void fire(Employee employee){
+        employees.remove(employee);
+         count--;
      }
 
-     public static double getIncome(){
+//     public double getIncome(){
+//
+//        for (Employee employee : employees)if (employee instanceof Manager) {
+//            income += ((Manager) employee).getSales();
+//        }
+//         return income;
+//     }
 
-         return income;
-     }
-
-    public ArrayList<Employee> getTopSalryStaff(int count){
+    public ArrayList<Employee> getTopSalary(int count){
         return null;
     }
 
-    public ArrayList<Employee> getLowestSalaryStaff(int count){
+    public ArrayList<Employee> getLowestSalary(int count){
         return null;
+    }
+
+    public double getCompanyIncome() {
+        for (Employee employee : employees)if (employee instanceof Manager) {
+            companyIncome += ((Manager) employee).getSales();
+        }
+        return companyIncome;
+    }
+
+    public void setCompanyIncome(int companyIncome) {
+        this.companyIncome = companyIncome;
     }
 
 }
