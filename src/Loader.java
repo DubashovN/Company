@@ -1,24 +1,26 @@
 public class Loader {
     public static void main(String[] args) {
 
-        Manager manager = new Manager();
-        TopManager topManager = new TopManager();
+//        Manager manager = new Manager();
+//        TopManager topManager = new TopManager();
+//        Operator operator = new Operator();
+//        manager.setSales();
 
 
-        manager.setSales();
-        System.out.println("Зарплата менеджера: " + manager.getMonthSalary());
+        Company company = Company.createCompany();
 
-        Company company = new Company();
         for (int i = 0; i <= 80; i++)
-            company.hire(manager);
-        company.setCompanyIncome();
+            company.hire(new Manager());
+//        company.setCompanyIncome();
         System.out.println(company.getCompanyIncome());
 
         for (int i = 0; i <=30; i++)
-            company.hire(topManager);
+            company.hire(new TopManager());
+        for (int i = 0; i < 150; i++)
+            company.hire(new Operator());
 
-        System.out.println(topManager.getMonthSalary());
-//        company.getLowestSalaryStaff(5);
 
+//        company.getLowestSalary(5);
+        company.getTopSalary(5).forEach(e -> System.out.println(e.getMonthSalary()));
     }
 }

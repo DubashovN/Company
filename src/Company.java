@@ -1,36 +1,27 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class Company {
 
     int countManager = 0;
     int countTopManager = 0;
-    private int companyIncome = 0;
+    int countOperator = 0;
     private ArrayList<Employee>employees = new ArrayList<>();
 
+    public static Company createCompany() {
+
+        return new Company();
+    }
      public void hire(Employee employee){
           employees.add(employee);
           if (employee instanceof Manager){
               countManager++;
-//         System.out.println("Родился менеджер! " + countManager);
-          }
-           if (employee instanceof TopManager){
+          } if (employee instanceof TopManager){
               countTopManager++;
-//         System.out.println("Родился топменеджер! " + countTopManager);
-           }
-     }
-//     public void hireAll(){
-//            employees.add(hireManager());
-//     }
-
-     public void hireManager(Manager manager){
-         employees.add(manager);
-         countManager++;
-         System.out.println("Родился менеджер! " + countManager);
-     }
-     public void hireTopManager(TopManager topManager){
-         employees.add(topManager);
-         countTopManager++;
-         System.out.println("Родился топменеджер! " + countTopManager);
+           } if (employee instanceof Operator){
+               countOperator++;
+         }
      }
 
      public void fire(Employee employee){
@@ -39,25 +30,51 @@ public class Company {
              countManager--;
          if (employee instanceof TopManager)
              countTopManager--;
+         if (employee instanceof Operator)
+             countOperator--;
      }
 
     public ArrayList<Employee> getTopSalary(int count){
-        return null;
+        Collections.sort(employees, new topSalaryComparator());
+        return (ArrayList<Employee>) employees.stream().limit(count).collect(Collectors.toList());
     }
 
     public ArrayList<Employee> getLowestSalary(int count){
         return null;
     }
 
-    int getCompanyIncome() {
-        return this.companyIncome;
-    }
-    void setCompanyIncome() {
+//    public void setCompanyIncome() {
+//        for (Employee employee : employees)
+//            if (employee instanceof Manager) {
+//                companyIncome += ((Manager) employee).getSales();
+//            }
+//
+//    }
+
+    public int getCompanyIncome() {
+        int companyIncome = 0;
         for (Employee employee : employees)
             if (employee instanceof Manager) {
-                this.companyIncome += ((Manager) employee).getSales();
-
+                companyIncome += ((Manager) employee).getSales();
             }
-        System.out.println("Компания заработала: " + this.companyIncome);
+        return companyIncome;
     }
+
+
+
+    public void hireManager(Manager manager){
+        employees.add(manager);
+        manager.setSales();
+        countManager++;
+    }
+    public void hireTopManager(TopManager topManager){
+        employees.add(topManager);
+        countTopManager++;
+    }
+
+    public void hireOperator (Operator operator){
+        employees.add(operator);
+        countOperator++;
+    }
+
 }
