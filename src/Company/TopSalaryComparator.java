@@ -1,16 +1,18 @@
-import java.util.Comparator;
+package Company;
 
-    public class minSalaryComparator implements Comparator<Employee> {
+import java.util.Comparator;
+public class TopSalaryComparator implements Comparator<Employee> {
 
         @Override
         public int compare(Employee o1, Employee o2) {
             if (o1.getMonthSalary() > o2.getMonthSalary()) {
-                return 1;
+                return -1;
             }
             if (o1.getMonthSalary() < o2.getMonthSalary()) {
-                return -1;
+                return 1;
             }
             return 0;
         }
     }
+
 

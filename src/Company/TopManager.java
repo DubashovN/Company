@@ -1,18 +1,23 @@
-public class TopManager extends Company implements Employee {
+package Company;
+
+public class TopManager implements Employee {
 
     private static final double BONUS = 1.5;
     private static final int SALES_PLAN = 10000000;
     private static final int START_SALARY = 120000;
     private int salary = 0;
+    int topManagerCount = 0;
+
+    private Company company;
 
     public TopManager(){
-
         setSalary();
-        System.out.println(("ЗП топа" ) + getMonthSalary());
+        topManagerCount++;
     }
 
+
     public void setSalary() {
-        double randomSalary = START_SALARY + (Math.random() * 100000);
+        int randomSalary = (int) (START_SALARY + (Math.random() * 100000));
         salary+=randomSalary;
     }
     public int getSalary() {
@@ -21,11 +26,11 @@ public class TopManager extends Company implements Employee {
 
     @Override
     public double getMonthSalary() {
-        if (getCompanyIncome() >= SALES_PLAN)
-            return getSalary() * BONUS + getSalary();
-        else {
+//        if (getCompanyIncome() >= SALES_PLAN)
+//            return getSalary() * BONUS + getSalary();
+//        else {
             return getSalary();
-        }
+//        }
 
     }
 
