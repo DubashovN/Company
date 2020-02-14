@@ -1,54 +1,61 @@
 package Company;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class Company {
+    private double income;
+    private List<Employee> staff = new ArrayList<>();
 
-    int count = 0;
-    private ArrayList<Employee>employees = new ArrayList<>();
-
-    public static Company createCompany() {
-
-        return new Company();
-    }
-     public void hire(Employee employee){
-          employees.add(employee);
-     }
-
-     public void fire(Employee employee){
-        employees.remove(employee);
-     }
-
-    public ArrayList<Employee> getTopSalary(int count){
-        Collections.sort(employees, new TopSalaryComparator());
-        return (ArrayList<Employee>) employees.stream().limit(count).collect(Collectors.toList());
+    public Company() {
     }
 
-    public ArrayList<Employee> getLowestSalary(int count){
-        Collections.sort(employees, new MinSalaryComparator());
-        return (ArrayList<Employee>) employees.stream().limit(count).collect(Collectors.toList());
+    public Company(double income) {
+        this.income = income;
     }
 
-    public int getCompanyIncome() {
-        int companyIncome = 0;
-        for (Employee employee : employees)
-            if (employee instanceof Manager) {
-                companyIncome += ((Manager) employee).getSales();
+    public List<Employee> getTopSalary(int count) {
+        staff.sort((e1, e2) -> {
+            if (e1.getMonthSalary() > e2.getMonthSalary()) {
+                return -1;
+            } else {
+                return e1.getMonthSalary() < e2.getMonthSalary() ? 1 : 0;
             }
-        return companyIncome;
+        });
+        return staff.subList(0, count);
     }
 
-    public void hireManager(Manager manager){
-        employees.add(manager);
-    }
-    public void hireTopManager(TopManager topManager) {
-        employees.add(topManager);
+    public List<Employee> getLowestSalary(int count) {
+
+        staff.sort((new TopSalaryComparator().reversed())); {
+        return staff.subList(0, count);}
     }
 
-    public void hireOperator (Operator operator){
-        employees.add(operator);
+    public void hire(Employee employee) {
+        staff.add(employee);
     }
 
+    public void hireAll(List<Employee> employees) {
+        staff.addAll(employees);
+    }
+
+    public void fire(int count) {
+        for(int i = 0; i < count; ++i) {
+            int index = (int)(Math.random() * (staff.size() - 1));
+            staff.remove(index);
+        }
+
+    }
+
+    double getIncome() {
+        double summ = 0;
+
+        for (Employee employee : staff){
+            if (employee instanceof Manager){
+                summ += ((Manager) employee).getMadeMoney();
+            }
+        }
+        income = summ;
+        return income;
+    }
 }

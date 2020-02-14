@@ -1,40 +1,28 @@
 package Company;
 
 public class Manager implements Employee {
-
+    private double salary;
+    private double sales;
     private static final double BONUS = 0.05;
     private static final int START_SALARY = 60000;
-    private double sales = 0;
-    private int salary = 0;
-    int managerCount = 0;
 
-    public Manager(){
-        setSales();
-        setSalary();
-        managerCount++;
+    public Manager() {
+        this.salary = randomSalary();
+        this.sales = randomSales();
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary() {
-        int randomSalary = (int) (START_SALARY + (Math.random() * 10000));
-        salary += randomSalary;
-    }
-    @Override
-    public double getMonthSalary() {
-
-        return getSales() * BONUS + getSalary() ;
-    }
-
-    public double getSales() {
+    double getMadeMoney() {
         return sales;
     }
 
-    public void setSales() {
-        int randomSales = (int) (Math.random() * 1000000);
-        sales+=randomSales;
+    public double getMonthSalary() {
+        return salary + sales * BONUS;
     }
 
+    private int randomSalary(){
+        return (int) (START_SALARY + (Math.random() * 10000));
+    }
+    private int randomSales(){
+        return (int) (Math.random() * 1000000);
+    }
 }
